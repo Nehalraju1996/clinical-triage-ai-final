@@ -1,0 +1,8 @@
+name: clinical-triage-ai
+entrypoint: app.env:ClinicalTriageEnv
+
+observation_space:
+  type: dict
+
+action_space:
+  type: dict
