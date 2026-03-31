@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from app.env import ClinicalTriageEnv
 from pydantic import BaseModel
+import uvicorn
 
 app = FastAPI()
 
@@ -30,3 +31,11 @@ def step(req: ActionRequest):
         "done": done,
         "info": info
     }
+
+# ✅ REQUIRED MAIN FUNCTION
+def main():
+    uvicorn.run(app, host="0.0.0.0", port=7860)
+
+# ✅ REQUIRED ENTRYPOINT
+if __name__ == "__main__":
+    main()
