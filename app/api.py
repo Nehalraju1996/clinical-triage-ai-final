@@ -3,26 +3,29 @@ from pydantic import BaseModel
 from app.env import ClinicalTriageEnv
 
 app = FastAPI()
+
 env = ClinicalTriageEnv()
 
-class Action(BaseModel):
-    severity: str = None
-    test: str = None
-    department: str = None
+class ActionRequest(BaseModel):
+    action: str
 
 @app.get("/")
 def root():
-    return {"message": "Clinical Triage API Running"}
+    return {"message": "Clinical Triage AI API Running"}
 
 @app.post("/reset")
 def reset():
-    return env.reset()
+    obs = env.reset()
+    return {
+        "observation": obs,
+        "info": {"message": "Environment reset successful"}
+    }
 
 @app.post("/step")
-def step(action: Action):
-    state, reward, done, info = env.step(action.dict())
+def step(req: ActionRequest):
+    obs, reward, done, info = env.step(req.action)
     return {
-        "state": state,
+        "observation": obs,
         "reward": reward,
         "done": done,
         "info": info
