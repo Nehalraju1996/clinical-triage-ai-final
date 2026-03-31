@@ -5,12 +5,17 @@ description = "Clinical triage OpenEnv environment"
 authors = [
     {name = "Nehal Vysyaraju"}
 ]
+
 dependencies = [
     "fastapi",
     "uvicorn",
     "pydantic",
-    "requests"
+    "requests",
+    "openenv>=0.1.13"
 ]
+
+[project.scripts]
+server = "server.app:app"
 
 [build-system]
 requires = ["setuptools", "wheel"]
