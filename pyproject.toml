@@ -1,0 +1,17 @@
+[project]
+name = "clinical-triage-ai"
+version = "0.1.0"
+description = "Clinical triage OpenEnv environment"
+authors = [
+    {name = "Nehal Vysyaraju"}
+]
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "pydantic",
+    "requests"
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
